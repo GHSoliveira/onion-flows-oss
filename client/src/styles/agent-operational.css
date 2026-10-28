@@ -1,0 +1,294 @@
+.agent-operational {
+  --agent-line: rgb(226 232 240);
+  --agent-surface: rgb(255 255 255);
+  --agent-muted: rgb(248 250 252);
+  color: rgb(15 23 42);
+}
+
+.dark .agent-operational {
+  --agent-line: rgb(30 41 59);
+  --agent-surface: rgb(15 23 42);
+  --agent-muted: rgb(15 23 42 / 0.7);
+  color: rgb(248 250 252);
+}
+
+.agent-metric-strip {
+  border: 1px solid var(--agent-line);
+}
+
+.agent-metric-cell {
+  border-right: 1px solid var(--agent-line);
+}
+
+.agent-metric-cell:last-child {
+  border-right: 0;
+}
+
+.agent-detail-grid > * {
+  border-right: 1px solid var(--agent-line);
+}
+
+.agent-detail-grid > *:last-child {
+  border-right: 0;
+}
+
+.active-contacts :is(button, input, select, textarea),
+.active-contacts :is(.rounded-lg, .rounded-xl, .rounded-2xl, .rounded-full) {
+  border-radius: 0 !important;
+}
+
+.active-contacts :is(.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
+  box-shadow: none !important;
+}
+
+.active-contacts [class*="bg-emerald-"],
+.active-contacts [class*="bg-orange-"],
+.active-contacts [class*="bg-amber-"],
+.active-contacts [class*="bg-red-"] {
+  background-color: var(--agent-muted) !important;
+}
+
+.active-contacts [class*="bg-emerald-600"],
+.active-contacts [class*="bg-emerald-700"] {
+  background-color: rgb(37 99 235) !important;
+  color: white !important;
+}
+
+.active-contacts [class*="bg-emerald-600"]:hover,
+.active-contacts [class*="bg-emerald-700"]:hover {
+  background-color: rgb(29 78 216) !important;
+}
+
+.active-contacts [class*="text-emerald-"],
+.active-contacts [class*="text-orange-"],
+.active-contacts [class*="text-amber-"] {
+  color: rgb(37 99 235) !important;
+}
+
+.active-contacts [class*="border-emerald-"],
+.active-contacts [class*="border-orange-"],
+.active-contacts [class*="border-amber-"] {
+  border-color: var(--agent-line) !important;
+}
+
+.active-contacts section,
+.active-contacts article {
+  box-shadow: none !important;
+}
+
+.active-contacts :is(h2, h3) + p,
+.agent-workspace .ui-responsive-modal h3 + p,
+.agent-workspace .ui-responsive-modal .text-lg + .text-sm {
+  display: none;
+}
+
+.active-contacts article:hover {
+  border-color: rgb(147 197 253) !important;
+}
+
+.agent-workspace > aside,
+.agent-workspace > main > header,
+.agent-workspace > main > form,
+.agent-workspace main aside {
+  box-shadow: none !important;
+}
+
+.agent-workspace > aside > div:first-child,
+.agent-workspace > main > header {
+  background: var(--agent-surface) !important;
+  backdrop-filter: none !important;
+}
+
+.agent-workspace > aside section > div.sticky {
+  color: rgb(71 85 105) !important;
+  background: var(--agent-muted) !important;
+  border-color: var(--agent-line) !important;
+}
+
+.agent-workspace > aside section > div.sticky button {
+  border-radius: 0 !important;
+  background: rgb(37 99 235) !important;
+}
+
+.agent-workspace [class*="text-emerald-"],
+.agent-workspace [class*="text-orange-"] {
+  color: rgb(37 99 235) !important;
+}
+
+.agent-workspace [class*="bg-emerald-"],
+.agent-workspace [class*="bg-orange-"] {
+  background-color: rgb(37 99 235) !important;
+}
+
+.agent-workspace [class*="border-emerald-"],
+.agent-workspace [class*="border-orange-"] {
+  border-color: rgb(191 219 254) !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Card da fila de espera — excecao operacional ao coringa acima.
+ * Os tres seletores [class*="...-orange-"] pintam TODO laranja do
+ * workspace de azul; aqui repomos o laranja apenas no card de espera
+ * (.agent-waiting-card, definido no JSX) com especificidade +1 classe,
+ * que vence o coringa. Visual: flat, cantos retos, laranja como acento
+ * de status (barra lateral) em vez de bloco pastel.
+ * ------------------------------------------------------------------ */
+.agent-workspace .agent-waiting-card {
+  border-radius: 0 !important;
+  border: 1px solid rgb(226 232 240) !important;
+  background: rgb(255 255 255) !important;
+  box-shadow: none !important;
+}
+
+.dark .agent-workspace .agent-waiting-card {
+  border-color: rgb(51 65 85) !important;
+  background: rgb(15 23 42) !important;
+}
+
+.agent-workspace .agent-waiting-card.is-selected {
+  border-color: rgb(234 88 12) !important;
+  background: rgb(255 247 237) !important;
+}
+
+.dark .agent-workspace .agent-waiting-card.is-selected {
+  border-color: rgb(249 115 22) !important;
+  background: rgb(124 45 18 / 0.18) !important;
+}
+
+/* Repoe laranja nos filhos: chip do icone, badge da fila, "Esperando ha". */
+.agent-workspace .agent-waiting-card [class*="bg-orange-"] {
+  background-color: rgb(255 237 213) !important;
+}
+
+.dark .agent-workspace .agent-waiting-card [class*="bg-orange-"] {
+  background-color: rgb(124 45 18 / 0.35) !important;
+}
+
+.agent-workspace .agent-waiting-card [class*="text-orange-"] {
+  color: rgb(194 65 12) !important;
+}
+
+.dark .agent-workspace .agent-waiting-card [class*="text-orange-"] {
+  color: rgb(253 186 116) !important;
+}
+
+.agent-workspace .agent-waiting-card [class*="border-orange-"] {
+  border-color: rgb(251 146 60) !important;
+}
+
+/* Cantos retos tambem nos chips internos (visual operacional). */
+.agent-workspace .agent-waiting-card [class*="rounded-"] {
+  border-radius: 3px !important;
+}
+
+/* ------------------------------------------------------------------ *
+ * Card "em atendimento" — mesmo padrao operacional do card de espera,
+ * com azul como acento de status. O chip do icone ja e azul (nao e
+ * tocado pelo coringa); aqui repomos o badge da fila (emerald) para um
+ * azul legivel, pois o coringa o pintava azul sobre azul (ilegivel).
+ * ------------------------------------------------------------------ */
+.agent-workspace .agent-active-card {
+  border-radius: 0 !important;
+  border: 1px solid rgb(226 232 240) !important;
+  background: rgb(255 255 255) !important;
+  box-shadow: none !important;
+}
+
+.dark .agent-workspace .agent-active-card {
+  border-color: rgb(51 65 85) !important;
+  background: rgb(15 23 42) !important;
+}
+
+.agent-workspace .agent-active-card.is-selected {
+  border-color: rgb(37 99 235) !important;
+  background: rgb(239 246 255) !important;
+}
+
+.dark .agent-workspace .agent-active-card.is-selected {
+  border-color: rgb(59 130 246) !important;
+  background: rgb(30 58 138 / 0.18) !important;
+}
+
+/* Badge da fila legivel (repoe o emerald forcado a azul-sobre-azul). */
+.agent-workspace .agent-active-card [class*="bg-emerald-"] {
+  background-color: rgb(219 234 254) !important;
+}
+
+.dark .agent-workspace .agent-active-card [class*="bg-emerald-"] {
+  background-color: rgb(30 58 138 / 0.35) !important;
+}
+
+.agent-workspace .agent-active-card [class*="text-emerald-"] {
+  color: rgb(29 78 216) !important;
+}
+
+.dark .agent-workspace .agent-active-card [class*="text-emerald-"] {
+  color: rgb(147 197 253) !important;
+}
+
+.agent-workspace .agent-active-card [class*="rounded-"] {
+  border-radius: 3px !important;
+}
+
+.agent-workspace > main > header button,
+.agent-workspace > main > form button,
+.agent-workspace main aside button {
+  border-radius: 4px !important;
+}
+
+/* Fundo da conversa: o slate da pagina, sem brilho, com doodles discretos no
+ * estilo do papel de parede padrao do WhatsApp. Padrao "I Like Food" de Hero
+ * Patterns (heropatterns.com), por Steve Schoger, CC BY 4.0. */
+.agent-chat-doodles {
+  background-image: url('../assets/patterns/i-like-food.svg');
+  background-size: 260px 260px;
+  opacity: 0.1;
+}
+
+.dark .agent-chat-doodles {
+  opacity: 0.07;
+}
+
+/* Acoes do cabecalho so com icone: circulo no hover (vence o raio de 4 px acima). */
+.agent-workspace > main > header button.agent-icon-action {
+  border-radius: 9999px !important;
+}
+
+@media (max-width: 1279px) {
+  .agent-metric-cell:nth-child(2) {
+    border-right: 0;
+  }
+
+  .agent-metric-cell:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--agent-line);
+  }
+}
+
+@media (min-width: 768px) {
+  .active-contacts .agent-metric-cell:nth-child(2) {
+    border-right: 1px solid var(--agent-line);
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 1023px) {
+  .agent-detail-grid > * {
+    border-right: 0;
+    border-bottom: 1px solid var(--agent-line);
+  }
+
+  .agent-detail-grid > *:last-child {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .agent-metric-cell {
+    border-right: 0;
+    border-bottom: 1px solid var(--agent-line);
+  }
+
+  .agent-metric-cell:last-child {
+    border-bottom: 0;
+  }
+}

@@ -1,0 +1,44 @@
+.network-globe {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.network-globe__stage {
+  position: absolute;
+  top: 49%;
+  left: 9%;
+  width: min(145%, 940px);
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  opacity: 0.92;
+}
+
+.network-globe__earth,
+.network-globe__cage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.network-globe__earth {
+  filter: contrast(1.08) brightness(1.12);
+}
+
+.network-globe__cage {
+  mix-blend-mode: screen;
+}
+
+.network-globe__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(11, 31, 70, 0.92) 0%, rgba(11, 31, 70, 0.48) 30%, rgba(11, 31, 70, 0.08) 68%, transparent 88%),
+    linear-gradient(180deg, rgba(11, 31, 70, 0.34) 0%, transparent 20%, transparent 70%, rgba(11, 31, 70, 0.84) 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-globe__stage { opacity: 0.72; }
+}

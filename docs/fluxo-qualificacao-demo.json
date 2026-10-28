@@ -1,0 +1,126 @@
+{
+  "name": "Qualificação para demonstração",
+  "description": "Coleta nome, assunto e resumo antes de transferir para a fila DEMO. Usado no vídeo de demonstração.",
+  "nodes": [
+    {
+      "id": "start",
+      "type": "startNode",
+      "position": { "x": 0, "y": 300 },
+      "data": { "label": "Início", "text": "Início" }
+    },
+    {
+      "id": "msg_ola",
+      "type": "messageNode",
+      "position": { "x": 260, "y": 300 },
+      "data": {
+        "label": "Boas-vindas",
+        "text": "Oi! Sou o assistente virtual da Onion Web Solutions.\n\nVou fazer três perguntas rápidas para já adiantar seu atendimento."
+      }
+    },
+    {
+      "id": "in_nome",
+      "type": "inputNode",
+      "position": { "x": 520, "y": 300 },
+      "data": {
+        "label": "Nome",
+        "text": "Para começar, como posso te chamar?",
+        "variableName": "nome_cliente",
+        "validationType": "none",
+        "errorText": "Não entendi. Pode escrever seu nome?"
+      }
+    },
+    {
+      "id": "menu_assunto",
+      "type": "menuNode",
+      "position": { "x": 780, "y": 300 },
+      "data": {
+        "label": "Assunto",
+        "text": "Prazer, {nome_cliente}! Em que posso ajudar?\n\n1 - Quero um orçamento\n2 - Tenho uma dúvida\n3 - Preciso de suporte\n\nResponda com o número da opção.",
+        "options": [
+          { "id": "1", "label": "Orçamento", "value": "Orçamento" },
+          { "id": "2", "label": "Dúvida", "value": "Dúvida" },
+          { "id": "3", "label": "Suporte", "value": "Suporte" }
+        ],
+        "setVarEnabled": true,
+        "variableName": "assunto",
+        "invalidSelectionMessage": "Não entendi. Responda 1, 2 ou 3."
+      }
+    },
+
+    { "id": "child_menu_assunto_1", "type": "caseNode", "position": { "x": 1040, "y": 140 }, "data": { "label": "Orçamento" } },
+    { "id": "child_menu_assunto_2", "type": "caseNode", "position": { "x": 1040, "y": 300 }, "data": { "label": "Dúvida" } },
+    { "id": "child_menu_assunto_3", "type": "caseNode", "position": { "x": 1040, "y": 460 }, "data": { "label": "Suporte" } },
+
+    {
+      "id": "msg_orcamento",
+      "type": "messageNode",
+      "position": { "x": 1300, "y": 140 },
+      "data": { "label": "Rota comercial", "text": "Ótimo, {nome_cliente}! Vou te encaminhar para o time comercial." }
+    },
+    {
+      "id": "msg_duvida",
+      "type": "messageNode",
+      "position": { "x": 1300, "y": 300 },
+      "data": { "label": "Rota dúvida", "text": "Certo, {nome_cliente}! Vou te encaminhar para quem consegue te explicar." }
+    },
+    {
+      "id": "msg_suporte",
+      "type": "messageNode",
+      "position": { "x": 1300, "y": 460 },
+      "data": { "label": "Rota suporte", "text": "Entendi, {nome_cliente}. Vou te encaminhar para o suporte." }
+    },
+
+    {
+      "id": "in_detalhe",
+      "type": "inputNode",
+      "position": { "x": 1580, "y": 300 },
+      "data": {
+        "label": "Resumo",
+        "text": "Antes disso, me conta em uma frase o que você precisa?",
+        "variableName": "resumo",
+        "validationType": "none",
+        "errorText": "Pode escrever com suas palavras, sem problema."
+      }
+    },
+    {
+      "id": "msg_resumo",
+      "type": "messageNode",
+      "position": { "x": 1840, "y": 300 },
+      "data": {
+        "label": "Confirmação",
+        "text": "Perfeito, {nome_cliente}. Anotei aqui:\n\nAssunto: {assunto}\nResumo: {resumo}\n\nJá estou passando para um atendente com essas informações."
+      }
+    },
+    {
+      "id": "fila_demo",
+      "type": "queueNode",
+      "position": { "x": 2100, "y": 300 },
+      "data": {
+        "label": "Fila DEMO",
+        "queueName": "DEMO",
+        "sendQueueMessage": false,
+        "continueFlowAfterQueue": false
+      }
+    }
+  ],
+  "edges": [
+    { "id": "e_start__msg_ola", "source": "start", "target": "msg_ola", "type": "smoothstep" },
+    { "id": "e_msg_ola__in_nome", "source": "msg_ola", "target": "in_nome", "type": "smoothstep" },
+    { "id": "e_in_nome__menu_assunto", "source": "in_nome", "target": "menu_assunto", "sourceHandle": "default", "type": "smoothstep" },
+
+    { "id": "e_menu_assunto__child_1", "source": "menu_assunto", "target": "child_menu_assunto_1", "sourceHandle": "1", "type": "smoothstep" },
+    { "id": "e_menu_assunto__child_2", "source": "menu_assunto", "target": "child_menu_assunto_2", "sourceHandle": "2", "type": "smoothstep" },
+    { "id": "e_menu_assunto__child_3", "source": "menu_assunto", "target": "child_menu_assunto_3", "sourceHandle": "3", "type": "smoothstep" },
+
+    { "id": "e_child_1__msg_orcamento", "source": "child_menu_assunto_1", "target": "msg_orcamento", "type": "smoothstep" },
+    { "id": "e_child_2__msg_duvida", "source": "child_menu_assunto_2", "target": "msg_duvida", "type": "smoothstep" },
+    { "id": "e_child_3__msg_suporte", "source": "child_menu_assunto_3", "target": "msg_suporte", "type": "smoothstep" },
+
+    { "id": "e_msg_orcamento__in_detalhe", "source": "msg_orcamento", "target": "in_detalhe", "type": "smoothstep" },
+    { "id": "e_msg_duvida__in_detalhe", "source": "msg_duvida", "target": "in_detalhe", "type": "smoothstep" },
+    { "id": "e_msg_suporte__in_detalhe", "source": "msg_suporte", "target": "in_detalhe", "type": "smoothstep" },
+
+    { "id": "e_in_detalhe__msg_resumo", "source": "in_detalhe", "target": "msg_resumo", "sourceHandle": "default", "type": "smoothstep" },
+    { "id": "e_msg_resumo__fila_demo", "source": "msg_resumo", "target": "fila_demo", "type": "smoothstep" }
+  ]
+}

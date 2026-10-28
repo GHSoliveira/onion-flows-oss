@@ -1,0 +1,64 @@
+# ---------------------------------------------------------------------------
+# Dependencias e artefatos gerados. Nao sao fonte: se reconstroem do zero.
+# ---------------------------------------------------------------------------
+node_modules/
+client/dist/
+_package_stage/
+*.tar
+*.tar.gz
+*.zip
+# Saidas de compilacao dos simuladores em C#
+# Ambiente Python da auditoria de seguranca
+.venv/
+__pycache__/
+# Videos renderizados e etapas intermediarias do marketing-video
+marketing-video/output/
+marketing-video/stage/
+
+# ---------------------------------------------------------------------------
+# Segredos e configuracao da maquina. Nunca sobem, nem em repositorio privado.
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.sandbox.example
+client/.vercel/
+# Configuracao local do Claude Code (tem permissoes com credenciais)
+.claude/
+
+# ---------------------------------------------------------------------------
+# Dados e arquivos de execucao
+# ---------------------------------------------------------------------------
+# Midia enviada por clientes
+uploads/
+logs/
+*.log
+*.pid
+.local-logs/
+# Banco JSON local, midia falsa e enderecos de tunel do sandbox
+sandbox/data/
+sandbox/fake-whatsapp-media/
+sandbox/logs/
+sandbox/tunnel-*.url
+sandbox/tunnel-urls.txt
+db.test-backup.json
+# Arquivo local de releases (manifesto, diff e artefato de cada publicacao).
+# Fica de fora de proposito: e historico da maquina, nao do projeto.
+.releases/
+
+# ---------------------------------------------------------------------------
+# Pastas locais fora do versionamento
+# ---------------------------------------------------------------------------
+# Copias antigas, historico git anterior e sobras de migracao
+_arquivo/
+# Documentos do negocio (contrato, planos de venda)
+_negocio/
+
+# ---------------------------------------------------------------------------
+# Lixo de sistema e editor
+# ---------------------------------------------------------------------------
+nul
+index.js.broken
+*.tmp
+Thumbs.db
+.DS_Store

@@ -1,0 +1,453 @@
+.super-admin-operational {
+  --sa-line: rgb(226 232 240);
+  --sa-surface: rgb(255 255 255);
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  color: rgb(15 23 42);
+}
+
+.dark .super-admin-operational {
+  --sa-line: rgb(30 41 59);
+  --sa-surface: rgb(15 23 42);
+  color: rgb(248 250 252);
+}
+
+.super-admin-operational :is(.rounded, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-full) {
+  border-radius: 0 !important;
+}
+
+.super-admin-operational :is(.shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl) {
+  box-shadow: none !important;
+}
+
+.super-admin-operational [class*="bg-green-"],
+.super-admin-operational [class*="bg-yellow-"],
+.super-admin-operational [class*="bg-red-"],
+.super-admin-operational [class*="bg-orange-"],
+.super-admin-operational [class*="bg-purple-"],
+.super-admin-operational [class*="bg-pink-"],
+.super-admin-operational [class*="bg-emerald-"],
+.super-admin-operational [class*="bg-cyan-"] {
+  background-color: rgb(248 250 252) !important;
+}
+
+.dark .super-admin-operational [class*="bg-green-"],
+.dark .super-admin-operational [class*="bg-yellow-"],
+.dark .super-admin-operational [class*="bg-red-"],
+.dark .super-admin-operational [class*="bg-orange-"],
+.dark .super-admin-operational [class*="bg-purple-"],
+.dark .super-admin-operational [class*="bg-pink-"],
+.dark .super-admin-operational [class*="bg-emerald-"],
+.dark .super-admin-operational [class*="bg-cyan-"] {
+  background-color: rgb(15 23 42) !important;
+}
+
+.super-admin-operational [class*="text-green-"],
+.super-admin-operational [class*="text-yellow-"],
+.super-admin-operational [class*="text-red-"],
+.super-admin-operational [class*="text-orange-"],
+.super-admin-operational [class*="text-purple-"],
+.super-admin-operational [class*="text-pink-"],
+.super-admin-operational [class*="text-emerald-"],
+.super-admin-operational [class*="text-cyan-"] {
+  color: rgb(71 85 105) !important;
+}
+
+.dark .super-admin-operational [class*="text-green-"],
+.dark .super-admin-operational [class*="text-yellow-"],
+.dark .super-admin-operational [class*="text-red-"],
+.dark .super-admin-operational [class*="text-orange-"],
+.dark .super-admin-operational [class*="text-purple-"],
+.dark .super-admin-operational [class*="text-pink-"],
+.dark .super-admin-operational [class*="text-emerald-"],
+.dark .super-admin-operational [class*="text-cyan-"] {
+  color: rgb(148 163 184) !important;
+}
+
+.super-admin-operational [class*="border-green-"],
+.super-admin-operational [class*="border-yellow-"],
+.super-admin-operational [class*="border-red-"],
+.super-admin-operational [class*="border-orange-"],
+.super-admin-operational [class*="border-purple-"],
+.super-admin-operational [class*="border-emerald-"] {
+  border-color: var(--sa-line) !important;
+}
+
+.super-admin-operational button,
+.super-admin-operational input,
+.super-admin-operational select,
+.super-admin-operational textarea {
+  border-radius: 0 !important;
+}
+
+.super-admin-operational table tbody tr {
+  transition: background-color 140ms ease;
+}
+
+.super-admin-operational table tbody tr:hover {
+  background: rgb(248 250 252);
+}
+
+.dark .super-admin-operational table tbody tr:hover {
+  background: rgb(15 23 42 / 0.72);
+}
+
+.sa-metric-strip {
+  display: grid;
+  border-block: 1px solid var(--sa-line);
+}
+
+.sa-metric-strip > * {
+  border-right: 1px solid var(--sa-line) !important;
+  border-block: 0 !important;
+  border-left: 0 !important;
+  background: transparent !important;
+}
+
+.sa-metric-strip > *:last-child {
+  border-right: 0 !important;
+}
+
+@media (max-width: 767px) {
+  .sa-metric-strip > * { border-bottom: 1px solid var(--sa-line) !important; }
+  .sa-metric-strip > *:nth-child(2n) { border-right: 0 !important; }
+  .sa-metric-strip.grid-cols-1 > * { border-right: 0 !important; }
+}
+
+/* ------------------------------------------------------------------------- */
+/* Vida nas telas de administracao: cor so onde ela significa algo, e        */
+/* movimento curto que desliga sozinho com prefers-reduced-motion.            */
+/* As classes sa-* nao casam com as regras acima que acinzentam o Tailwind.   */
+/* ------------------------------------------------------------------------- */
+
+.super-admin-operational {
+  --sa-ok: #059669;
+  --sa-warn: #d97706;
+  --sa-bad: #e11d48;
+  --sa-info: #2563eb;
+  --sa-neutral: #64748b;
+  --sa-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .super-admin-operational {
+  --sa-ok: #34d399;
+  --sa-warn: #fbbf24;
+  --sa-bad: #fb7185;
+  --sa-info: #60a5fa;
+  --sa-neutral: #94a3b8;
+}
+
+.super-admin-operational [data-tone="ok"] { --tone: var(--sa-ok); }
+.super-admin-operational [data-tone="warn"] { --tone: var(--sa-warn); }
+.super-admin-operational [data-tone="bad"] { --tone: var(--sa-bad); }
+.super-admin-operational [data-tone="info"] { --tone: var(--sa-info); }
+.super-admin-operational [data-tone="neutral"] { --tone: var(--sa-neutral); }
+
+/* Chip semantico */
+.sa-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 7px;
+  border: 1px solid color-mix(in srgb, var(--tone, var(--sa-neutral)) 32%, transparent);
+  background: color-mix(in srgb, var(--tone, var(--sa-neutral)) 8%, transparent);
+  color: var(--tone, var(--sa-neutral));
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Marcador da legenda da barra empilhada (quadrado, como os segmentos) */
+.sa-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  background: var(--tone, var(--sa-neutral));
+}
+
+/* Medidor de uso contra limite */
+.sa-meter { min-width: 0; }
+
+.sa-meter-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: rgb(100 116 139);
+}
+
+.sa-meter-head > :last-child {
+  color: rgb(51 65 85);
+  font-weight: 600;
+}
+
+.dark .sa-meter-head > :last-child { color: rgb(203 213 225); }
+
+.sa-meter[data-tone="warn"] .sa-meter-head > :last-child,
+.sa-meter[data-tone="bad"] .sa-meter-head > :last-child { color: var(--tone); }
+
+.sa-meter-track {
+  height: 3px;
+  background: color-mix(in srgb, var(--sa-neutral) 18%, transparent);
+  overflow: hidden;
+}
+
+.sa-meter-fill {
+  height: 100%;
+  background: var(--tone, var(--sa-info));
+  transform-origin: left center;
+  transform: scaleX(var(--p, 0));
+  transition: transform 600ms var(--sa-ease);
+  animation: saMeterIn 900ms var(--sa-ease) both;
+}
+
+@keyframes saMeterIn {
+  from { transform: scaleX(0); }
+}
+
+/* Barra empilhada (carteira) */
+.sa-segbar {
+  display: flex;
+  gap: 2px;
+  height: 6px;
+}
+
+.sa-segbar > span {
+  flex-basis: 0;
+  background: var(--tone, var(--sa-neutral));
+  transform-origin: left center;
+  animation: saSegIn 700ms var(--sa-ease) both;
+}
+
+.sa-segbar > span[data-tone="neutral"] { opacity: 0.25; }
+
+@keyframes saSegIn {
+  from { transform: scaleX(0); opacity: 0; }
+}
+
+.sa-seglegend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: rgb(100 116 139);
+}
+
+.sa-seglegend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sa-seglegend strong {
+  color: rgb(15 23 42);
+  font-weight: 700;
+}
+
+.dark .sa-seglegend strong { color: rgb(241 245 249); }
+.sa-seglegend > span[data-empty] { opacity: 0.55; }
+
+/* ID copiavel */
+.sa-copy {
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgb(148 163 184);
+  font-size: 11px;
+  cursor: copy;
+  transition: color 140ms ease;
+}
+
+.sa-copy[data-strong] {
+  color: rgb(15 23 42);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.dark .sa-copy[data-strong] { color: rgb(241 245 249); }
+
+.sa-copy:hover { color: rgb(71 85 105); }
+.dark .sa-copy:hover { color: rgb(203 213 225); }
+
+.sa-copy-icon {
+  display: inline-grid;
+  place-items: center;
+  opacity: 0;
+  transform: translateX(-3px);
+  transition: opacity 140ms ease, transform 180ms var(--sa-ease);
+}
+
+.sa-copy:hover .sa-copy-icon,
+.sa-copy:focus-visible .sa-copy-icon {
+  opacity: 1;
+  transform: none;
+}
+
+.sa-copy[data-copied] { color: var(--sa-ok); }
+
+.sa-copy[data-copied] .sa-copy-icon {
+  opacity: 1;
+  transform: none;
+  animation: saPop 320ms var(--sa-ease);
+}
+
+@keyframes saPop {
+  0% { transform: scale(0.4); }
+  60% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+
+/* Entrada em cascata: className="sa-reveal" style={reveal(i)} */
+.sa-reveal {
+  animation: saReveal 420ms var(--sa-ease) both;
+  animation-delay: calc(var(--i, 0) * 38ms);
+}
+
+@keyframes saReveal {
+  from { opacity: 0; transform: translateY(6px); }
+}
+
+/* Linha de tabela com marcador azul na borda esquerda ao passar o mouse */
+.super-admin-operational tr.sa-row > td:first-child {
+  box-shadow: inset 0 0 0 transparent;
+  transition: box-shadow 160ms var(--sa-ease);
+}
+
+.super-admin-operational tr.sa-row:hover > td:first-child {
+  box-shadow: inset 2px 0 0 var(--sa-info);
+}
+
+/* Cartao com a mesma marca lateral; com data-tone ela fica sempre visivel */
+.sa-card {
+  position: relative;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.sa-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px auto -1px -1px;
+  width: 2px;
+  background: var(--tone, var(--sa-info));
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 220ms var(--sa-ease);
+}
+
+.sa-card[data-tone]::before,
+.sa-card:hover::before { transform: scaleY(1); }
+
+/* Botoes: afundam no clique; seta de "Acessar" anda um pouco no hover */
+.sa-press {
+  transition: transform 120ms ease, background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+}
+
+.sa-press:active:not(:disabled) { transform: scale(0.96); }
+
+.sa-nudge > svg { transition: transform 180ms var(--sa-ease); }
+.sa-nudge:hover > svg { transform: translateX(3px); }
+
+.sa-icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  color: rgb(100 116 139);
+  transition: color 140ms ease, border-color 140ms ease, background-color 140ms ease, transform 120ms ease;
+}
+
+.sa-icon-btn:hover:not(:disabled) {
+  border-color: var(--sa-line);
+  color: var(--sa-info);
+}
+
+.sa-icon-btn[data-tone]:hover:not(:disabled) { color: var(--tone); }
+.sa-icon-btn:active:not(:disabled) { transform: scale(0.92); }
+
+/* Botoes com tom (substituem bg-red-600 text-white, que as regras acima apagavam) */
+.sa-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 11px;
+  border: 1px solid color-mix(in srgb, var(--tone, var(--sa-neutral)) 40%, transparent);
+  background: transparent;
+  color: var(--tone, var(--sa-neutral));
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Sem tom proprio, o botao nao herda o tom do cartao em volta (ex.: vermelho do bloqueado) */
+.sa-btn:not([data-tone]),
+.sa-icon-btn:not([data-tone]) { --tone: var(--sa-neutral); }
+
+.sa-btn:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--tone, var(--sa-neutral)) 9%, transparent);
+  border-color: var(--tone, var(--sa-neutral));
+}
+
+.sa-btn[data-solid] {
+  border-color: var(--tone, var(--sa-info));
+  background: var(--tone, var(--sa-info));
+  color: #fff;
+}
+
+.dark .sa-btn[data-solid] { color: rgb(2 6 23); }
+
+.sa-btn[data-solid]:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--tone, var(--sa-info)) 86%, #000);
+}
+
+.sa-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Aviso dentro de um cartao (carencia, bloqueio, confianca) */
+.sa-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--tone, var(--sa-neutral)) 30%, transparent);
+  background: color-mix(in srgb, var(--tone, var(--sa-neutral)) 6%, transparent);
+  color: var(--tone, var(--sa-neutral));
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Linha nova chegando em tempo real */
+.sa-flash > * { animation: saFlash 1.8s ease-out both; }
+
+@keyframes saFlash {
+  from { background-color: color-mix(in srgb, var(--sa-info) 14%, transparent); }
+  to { background-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sa-meter-fill,
+  .sa-segbar > span,
+  .sa-reveal,
+  .sa-flash > *,
+  .sa-copy[data-copied] .sa-copy-icon {
+    animation: none !important;
+  }
+
+  .sa-card::before,
+  .sa-press,
+  .sa-nudge > svg,
+  .sa-meter-fill {
+    transition: none !important;
+  }
+}

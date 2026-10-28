@@ -1,0 +1,22 @@
+{
+  "headers": [
+    {
+      "source": "/((?!assets/|.*\\.(?:png|svg|ico|webp)$).*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, max-age=0" }
+      ]
+    },
+    {
+      "source": "/(.*\\.(?:png|svg|ico|webp))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/((?!assets/|onion-logo\\.png|Onion_logo_root\\.png|favicon-32\\.png|apple-touch-icon\\.png|manifest\\.json|sw\\.js).*)",
+      "destination": "/index.html"
+    }
+  ]
+}

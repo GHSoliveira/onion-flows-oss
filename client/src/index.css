@@ -1,0 +1,564 @@
+@import "tailwindcss"; /* Em v4, usamos import e não @tailwind base/components/utilities */
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-success: #10b981;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+}
+
+
+/* Configuração para Tailwind 4 reconhecer a classe .dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light;
+}
+
+/* Quando a classe .dark for aplicada ao <html> */
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  @apply bg-gray-50 text-slate-900 transition-colors duration-300;
+}
+
+.dark body {
+  @apply bg-slate-900 text-slate-100;
+}
+
+/* ==========================================================================
+   Scrollbar padrao do sistema
+   Uma unica aparencia para toda a aplicacao. As regras ::-webkit-scrollbar nao
+   sao herdadas, entao precisam do seletor universal: sem isso so as poucas
+   areas que declaravam .custom-scrollbar ficariam padronizadas e o resto
+   continuaria com a barra nativa do sistema operacional.
+   Para esconder a barra em uma area especifica use .scrollbar-hide, definida
+   mais abaixo, que sobrescreve por especificidade.
+   ========================================================================== */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent; /* slate-300 */
+}
+
+html.dark {
+  scrollbar-color: #475569 transparent; /* slate-600 */
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-300 */
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* slate-400 */
+  background-clip: padding-box;
+}
+
+/* O `*` nao alcanca o proprio <html>, e e dele que o Chrome tira a barra da
+   janela. Sem o seletor sem descendente a barra do documento continuaria
+   clara no modo escuro. */
+html.dark::-webkit-scrollbar-thumb,
+html.dark *::-webkit-scrollbar-thumb {
+  background: #475569; /* slate-600 */
+  background-clip: padding-box;
+}
+
+html.dark::-webkit-scrollbar-thumb:hover,
+html.dark *::-webkit-scrollbar-thumb:hover {
+  background: #64748b; /* slate-500 */
+  background-clip: padding-box;
+}
+
+/* Aliases mantidos: o padrao acima ja cobre os dois, mas as classes seguem no
+   markup e remove-las exigiria tocar em dezenas de arquivos sem ganho. */
+.custom-scrollbar,
+.sidebar-scrollbar {
+  scrollbar-width: thin;
+}
+
+/* Unico opt-out: esconde a barra sem perder a rolagem. */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Lista de cards do agente — reorder fluido (framer-motion) */
+.agent-chat-reorder-group {
+  position: relative;
+}
+
+.agent-chat-card {
+  cursor: pointer;
+  user-select: none;
+  will-change: transform;
+  /* Nao aplicar borda/sombra aqui: o motion deixa estilo residual apos drag */
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.agent-chat-card-dragging,
+.agent-chat-card-dragging * {
+  cursor: grabbing !important;
+  z-index: 50;
+}
+
+.agent-chat-card-dragging > div {
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22) !important;
+}
+
+.dark .agent-chat-card-dragging > div {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+.flow-toolbar-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.flow-toolbar-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.node-config-inspector input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+.node-config-inspector textarea,
+.node-config-inspector select {
+  background-color: #fff !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+}
+
+.node-config-inspector input:focus,
+.node-config-inspector textarea:focus,
+.node-config-inspector select:focus {
+  border-color: #0f172a !important;
+  box-shadow: 0 0 0 1px #0f172a !important;
+  outline: none !important;
+}
+
+.node-config-inspector button,
+.node-config-inspector .rounded-lg,
+.node-config-inspector .rounded-xl {
+  border-radius: 2px !important;
+}
+
+.node-config-inspector label {
+  letter-spacing: 0.05em;
+}
+
+.dark .node-config-inspector input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="color"]):not([type="file"]),
+.dark .node-config-inspector textarea,
+.dark .node-config-inspector select {
+  background-color: #020617 !important;
+  color: #f1f5f9 !important;
+  border-color: #64748b !important;
+}
+
+.dark .node-config-inspector input:focus,
+.dark .node-config-inspector textarea:focus,
+.dark .node-config-inspector select:focus {
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 0 0 1px #cbd5e1 !important;
+}
+
+.node-config-inspector input:disabled,
+.node-config-inspector textarea:disabled,
+.node-config-inspector select:disabled {
+  opacity: 0.6;
+}
+
+.node-config-inspector input[type="checkbox"],
+.node-config-inspector input[type="radio"] {
+  accent-color: #0f172a;
+}
+
+.dark .node-config-inspector input[type="checkbox"],
+.dark .node-config-inspector input[type="radio"] {
+  accent-color: #e2e8f0;
+}
+
+@keyframes uiOverlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes uiModalPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes uiSheetUpIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes uiPanelSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes uiPanelSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes uiCardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes uiMessageReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nodeConfigModalReveal {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.12, 0.08, 1);
+  }
+  40% {
+    opacity: 1;
+    transform: scale3d(1, 0.12, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes nodeConfigModalContentReveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes commercial-edge-dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.ui-overlay-fade {
+  animation: uiOverlayFadeIn 180ms ease both;
+}
+
+.ui-modal-surface {
+  animation: uiModalPopIn 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+
+.ui-sheet-surface {
+  animation: uiSheetUpIn 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+.ui-responsive-modal {
+  animation: uiSheetUpIn 240ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+.ui-mobile-chat-enter {
+  animation: uiPanelSlideInRight 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ui-mobile-list-enter {
+  animation: uiPanelSlideInLeft 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ui-card-hover {
+  animation: uiCardReveal 220ms ease both;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
+  will-change: transform;
+}
+
+.ui-card-hover:hover {
+  transform: translateY(-2px);
+}
+
+.ui-message-enter {
+  animation: uiMessageReveal 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+.node-config-modal-surface {
+  animation: nodeConfigModalReveal 260ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: center;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.node-config-modal-surface > * {
+  animation: nodeConfigModalContentReveal 180ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+  will-change: transform, opacity;
+}
+
+@media (min-width: 1024px) {
+  .ui-responsive-modal {
+    animation: uiModalPopIn 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ui-overlay-fade,
+  .ui-modal-surface,
+  .ui-sheet-surface,
+  .ui-responsive-modal,
+  .ui-mobile-chat-enter,
+  .ui-mobile-list-enter,
+  .ui-card-hover,
+  .ui-message-enter,
+  .node-config-modal-surface,
+  .node-config-modal-surface > * {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem !important;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+  }
+}
+
+/* Mantem as conexoes em uma camada estavel durante o arraste dos nodes. */
+.flow-editor-canvas .react-flow__edges {
+  z-index: 1;
+}
+
+.flow-editor-canvas .react-flow__nodes {
+  z-index: 2;
+}
+
+.flow-editor-canvas .react-flow__node.dragging {
+  z-index: 3 !important;
+}
+:root {
+  --flow-edge-active: #0f172a;
+}
+
+.dark {
+  --flow-edge-active: #e2e8f0;
+}
+
+.compact-audio-player {
+  display: flex;
+  width: min(236px, 100%);
+  min-width: 210px;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 8px;
+  overflow: hidden;
+  color: inherit;
+  background: rgb(15 23 42 / 0.14);
+  border: 1px solid rgb(148 163 184 / 0.16);
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+.compact-audio-player audio {
+  display: none;
+}
+
+.compact-audio-play,
+.compact-audio-action,
+.media-viewer-action,
+.media-viewer-nav {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+}
+
+.compact-audio-play {
+  width: 30px;
+  height: 30px;
+  color: rgb(30 41 59);
+  background: rgb(255 255 255 / 0.92);
+  border-radius: 999px;
+  box-shadow: 0 3px 10px rgb(15 23 42 / 0.16);
+  transition: transform 140ms ease, background-color 140ms ease, opacity 140ms ease;
+}
+
+.compact-audio-play:hover:not(:disabled) {
+  background: white;
+  transform: scale(1.04);
+}
+
+.compact-audio-play:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.compact-audio-action {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  color: inherit;
+  background: transparent;
+  border-radius: 7px;
+  opacity: 0.62;
+  transition: background-color 140ms ease, opacity 140ms ease;
+}
+
+.compact-audio-action:hover {
+  background: rgb(148 163 184 / 0.14);
+  opacity: 1;
+}
+
+.compact-audio-range {
+  display: block;
+  width: 100%;
+  height: 12px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  appearance: none;
+  background: transparent;
+}
+
+.compact-audio-range::-webkit-slider-runnable-track {
+  height: 3px;
+  background: linear-gradient(
+    to right,
+    rgb(96 165 250) 0,
+    rgb(96 165 250) var(--audio-progress),
+    rgb(148 163 184 / 0.3) var(--audio-progress),
+    rgb(148 163 184 / 0.3) 100%
+  );
+  border-radius: 999px;
+}
+
+.compact-audio-range::-webkit-slider-thumb {
+  width: 9px;
+  height: 9px;
+  margin-top: -3px;
+  appearance: none;
+  background: white;
+  border: 2px solid rgb(96 165 250);
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgb(15 23 42 / 0.22);
+}
+
+.compact-audio-range:disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.media-viewer-action {
+  width: 36px;
+  height: 36px;
+  color: rgb(226 232 240);
+  background: transparent;
+  border-radius: 10px;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.media-viewer-action:hover {
+  color: white;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.media-viewer-nav {
+  position: absolute;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  color: white;
+  background: rgb(15 23 42 / 0.72);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  border-radius: 999px;
+  transition: transform 150ms ease, background-color 150ms ease;
+}
+
+.media-viewer-nav:hover {
+  background: rgb(30 41 59 / 0.92);
+  transform: scale(1.05);
+}

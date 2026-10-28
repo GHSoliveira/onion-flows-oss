@@ -1,0 +1,191 @@
+.onion-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 100%;
+  width: 100%;
+}
+
+.onion-loader__mark {
+  position: relative;
+  width: var(--onion-loader-size);
+  height: var(--onion-loader-size);
+  isolation: isolate;
+}
+
+.onion-loader__leaf {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: #155DFC;
+  -webkit-mask: var(--onion-petal) center / contain no-repeat;
+  mask: var(--onion-petal) center / contain no-repeat;
+  transform-origin: 51.2% 91.2%;
+  filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  will-change: opacity, transform, filter, clip-path;
+  animation-duration: 3.6s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  animation-iteration-count: infinite;
+}
+
+.onion-loader__leaf--major {
+  z-index: 3;
+  animation-name: onionLeafMajor;
+}
+
+.onion-loader__leaf--mid {
+  z-index: 2;
+  animation-name: onionLeafMid;
+}
+
+.onion-loader__leaf--minor {
+  z-index: 1;
+  animation-name: onionLeafMinor;
+}
+
+.onion-loader__aura {
+  position: absolute;
+  inset: 22%;
+  z-index: -1;
+  border-radius: 50%;
+  background: rgba(21, 93, 252, 0.2);
+  filter: blur(16px);
+  animation: onionAura 3.6s ease-in-out infinite;
+}
+
+.onion-loader__label {
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation: onionLabel 3.6s ease-in-out infinite;
+}
+
+.dark .onion-loader__label { color: #94a3b8; }
+
+@keyframes onionLeafMajor {
+  0%, 4%, 100% {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(5px) scale(1.18) rotate(10deg);
+    filter: blur(1.5px);
+  }
+  6% {
+    opacity: 1;
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(5px) scale(1.18) rotate(10deg);
+  }
+  24%, 32% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1.22) rotate(10deg);
+    filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  }
+  41% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1.22) rotate(-1deg);
+    filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  }
+  43%, 76% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1.22) rotate(0);
+    filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  }
+  91% {
+    opacity: 1;
+    clip-path: inset(0 0 99% 0);
+    transform: translateY(-2px) scale(1.22) rotate(0);
+    filter: none;
+  }
+  92%, 96% { opacity: 0; clip-path: inset(0 0 101% 0); filter: none; }
+}
+
+@keyframes onionLeafMid {
+  0%, 43%, 100% {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(4px) scale(1.18) rotate(-10deg);
+    filter: blur(1.5px);
+  }
+  45% {
+    opacity: 1;
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(4px) scale(1.18) rotate(-10deg);
+  }
+  62% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1.22) rotate(1.3deg);
+    filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  }
+  65%, 76% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1.22) rotate(0);
+    filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  }
+  91% {
+    opacity: 1;
+    clip-path: inset(0 0 99% 0);
+    transform: translateY(-2px) scale(1.22) rotate(0);
+    filter: none;
+  }
+  92%, 96% { opacity: 0; clip-path: inset(0 0 101% 0); filter: none; }
+}
+
+@keyframes onionLeafMinor {
+  0%, 48%, 100% {
+    opacity: 0;
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(4px) scale(1.18) rotate(-21deg);
+    filter: blur(1.5px);
+  }
+  50% {
+    opacity: 1;
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(4px) scale(1.18) rotate(-21deg);
+  }
+  66% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1.22) rotate(1.6deg);
+    filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  }
+  69%, 76% {
+    opacity: 1;
+    clip-path: inset(0);
+    transform: translateY(0) scale(1.22) rotate(0);
+    filter: drop-shadow(0 8px 12px rgba(37, 116, 179, 0.16));
+  }
+  91% {
+    opacity: 1;
+    clip-path: inset(0 0 99% 0);
+    transform: translateY(-2px) scale(1.22) rotate(0);
+    filter: none;
+  }
+  92%, 96% { opacity: 0; clip-path: inset(0 0 101% 0); filter: none; }
+}
+
+@keyframes onionAura {
+  0%, 38%, 100% { opacity: 0; transform: scale(0.72); }
+  66%, 76% { opacity: 1; transform: scale(1.12); }
+  94% { opacity: 0; transform: scale(1.32); }
+}
+
+@keyframes onionLabel {
+  0%, 100% { opacity: 0.38; }
+  62%, 78% { opacity: 0.92; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .onion-loader__leaf,
+  .onion-loader__aura,
+  .onion-loader__label { animation: none; }
+  .onion-loader__leaf { opacity: 1; clip-path: inset(0); transform: scale(1.22); filter: none; }
+}
