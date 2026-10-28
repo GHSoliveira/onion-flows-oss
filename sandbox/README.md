@@ -8,7 +8,7 @@ Redis nem conta na Meta.
 ```bash
 cp .env.sandbox.example .env.sandbox
 npm run sandbox                 # API em http://localhost:3001
-npm --prefix client run dev     # painel em http://localhost:5173
+npm --prefix client run dev     # painel em http://localhost:3000
 ```
 
 `npm run sandbox` cria (ou atualiza) os usuarios de teste e sobe a API.

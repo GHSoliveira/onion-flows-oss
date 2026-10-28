@@ -1,5 +1,5 @@
 # Falsos positivos conferidos a mao em 2026-09-14.
 # Placeholder do exemplo de configuracao, nao e chave real.
-.env.example:generic-api-key:136
+.env.example:generic-api-key:139
 # Chave ficticia usada so no teste da ponte Turizmo.
 tests/turizmoInboundBridge.test.js:generic-api-key:9

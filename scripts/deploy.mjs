@@ -31,7 +31,7 @@ const CHAVE = exigirEnv('ONION_SSH_KEY');
 const ENTRADA = '/opt/onion-flows/incoming';
 
 // O que roda na Oracle. Igual ao ESCOPO_ARTEFATO do scripts/release.mjs.
-const BACKEND = ['index.js', 'database.js', 'package.json', 'package-lock.json', '.env.example',
+const BACKEND = ['index.js', 'package.json', 'package-lock.json', '.env.example',
   'src', 'db', 'scripts', 'tests', '.githooks'];
 
 const args = process.argv.slice(2);

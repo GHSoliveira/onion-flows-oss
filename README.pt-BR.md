@@ -59,10 +59,10 @@ WhatsApp / Telegram ──► webhook ──► fila Redis + BullMQ ──► mo
 - **API**: Node.js + Express, Socket.io para atualização ao vivo, Zod na validação, login por JWT com isolamento por empresa em toda consulta.
 - **Banco**: uma camada de adaptadores (`db/`) sobre Postgres em produção e arquivo JSON no desenvolvimento local e nos testes.
 - **Entrada do webhook**: Redis + BullMQ quando disponível, com caminho reserva direto para não perder mensagem se o Redis cair.
-- **Painel**: React 19, Vite, Tailwind, React Flow, Zustand, SWR, Recharts.
+- **Painel**: React 19, Vite, Tailwind, React Flow, Recharts.
 - **Operação**: script de publicação com checagem de saúde e volta de versão (`scripts/deploy.mjs`), painel estático servido pelo nginx, rastreio de erros no Sentry e rota de saúde dos recursos para alertas.
 
-Mais detalhes em [docs/ARQUITETURA_COMPLETA_ONION_FLOWS.md](docs/ARQUITETURA_COMPLETA_ONION_FLOWS.md) e [API_DOCUMENTATION.md](API_DOCUMENTATION.md) (em inglês).
+Mais detalhes em [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) e [API_DOCUMENTATION.md](API_DOCUMENTATION.md) (em inglês).
 
 ## Rodar na sua máquina
 
@@ -81,7 +81,7 @@ Em outro terminal:
 npm --prefix client run dev
 ```
 
-Abra http://localhost:5173 e entre com `admin` / `sandbox123` (super admin) ou `agent` / `sandbox123` (atendente). Esses usuários só existem no banco JSON local.
+Abra http://localhost:3000 e entre com `admin` / `sandbox123` (super admin) ou `agent` / `sandbox123` (atendente). Esses usuários só existem no banco JSON local.
 
 Para instalar de verdade, copie `.env.example` para `.env` e `client/.env.example` para `client/.env` e preencha banco, WhatsApp e domínio.
 
@@ -91,7 +91,7 @@ Para instalar de verdade, copie `.env.example` para `.env` e `client/.env.exampl
 npm test
 ```
 
-469 testes com o executor de testes do próprio Node, cobrindo motor de fluxos, mensagens do WhatsApp, distribuição, cobrança, permissões e isolamento entre empresas.
+468 testes com o executor de testes do próprio Node, cobrindo motor de fluxos, mensagens do WhatsApp, distribuição, cobrança, permissões e isolamento entre empresas.
 
 ## Licença
 

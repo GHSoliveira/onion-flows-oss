@@ -9,8 +9,6 @@
     "test:engine": "node --test tests/*.test.js",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "migrate": "node scripts/migrate-to-mongodb.js",
-    "migrate:force": "node scripts/migrate-to-mongodb.js --force",
     "migrate:supabase": "node scripts/migrate-to-supabase.mjs",
     "migrate:postgres": "node scripts/migrate-json-to-postgres.mjs",
     "smoke:postgres": "node scripts/postgres-smoke.mjs",

@@ -73,7 +73,7 @@ Ponte inbound servidor-a-servidor, autenticada por `X-API-Key` e sem JWT:
 - `GET /integrations/turizmo/campaigns/:turizmoCampaignId?tenantId=...`: reconcilia o estado da campanha.
 - `POST /integrations/turizmo/test`: valida chave e tenant sem criar dados comerciais.
 
-Os dois endpoints de escrita exigem `Idempotency-Key`. Consulte `docs/TURIZMO_INBOUND_BRIDGE.md` para contratos e exemplos completos.
+Os dois endpoints de escrita exigem `Idempotency-Key`. A lista completa das rotas da ponte esta na secao Turizmo do [API_DOCUMENTATION.md](../API_DOCUMENTATION.md).
 
 ## Diagnostico comercial
 

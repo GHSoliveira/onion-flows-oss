@@ -112,7 +112,7 @@ if (envFlag('TURIZMO_INTEGRATION_ENABLED', false) && !String(process.env.TURIZMO
 try {
   await adapter.init();
   await initRedis();
-  console.log('✅ MongoDB inicializado');
+  console.log('✅ Banco de dados inicializado');
   if (CHAT_STATE_REPAIR_ON_BOOT) {
     const chatRepairSummary = await repairAllChatStates({ log: true });
     if (chatRepairSummary?.repaired) {
@@ -145,7 +145,7 @@ try {
   startDataRetentionWorker();
   startWhatsAppInsightsSync();
 } catch (error) {
-  console.error('❌ Falha ao conectar ao MongoDB:', error.message);
+  console.error('❌ Falha ao conectar ao banco de dados:', error.message);
   process.exit(1);
 }
 

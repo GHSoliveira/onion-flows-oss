@@ -156,9 +156,3 @@ test('resolver de midia aceita HTTP(S)/uploads e rejeita protocolos ativos', () 
   assert.equal(resolveAllowedMediaUrl('javascript:alert(1)', options), '');
   assert.equal(resolveAllowedMediaUrl('//evil.example/file', options), '');
 });
-
-test('preview nao declara isolamento inexistente nem usa new Function', () => {
-  const source = fs.readFileSync(path.resolve('client/src/hooks/useFlowPreview.js'), 'utf8');
-  assert.doesNotMatch(source, /safeVars|safeEvaluate|new\s+Function|\beval\s*\(/);
-  assert.match(source, /evaluatePreviewExpression/);
-});

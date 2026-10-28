@@ -40,7 +40,7 @@ const DESTINO = path.join(RAIZ, '.releases');
 
 // Backend: o que existe dentro de /opt/onion-flows/current e importa em runtime.
 const ESCOPO_ARTEFATO = [
-  'index.js', 'database.js', 'package.json', 'package-lock.json', '.env.example',
+  'index.js', 'package.json', 'package-lock.json', '.env.example',
   'src', 'db', 'scripts', 'tests', '.githooks'
 ];
 

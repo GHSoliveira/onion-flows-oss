@@ -22,6 +22,7 @@ marketing-video/stage/
 .env.*
 !.env.example
 !.env.sandbox.example
+!load-tests/.env.k6.example
 client/.vercel/
 # Configuracao local do Claude Code (tem permissoes com credenciais)
 .claude/
