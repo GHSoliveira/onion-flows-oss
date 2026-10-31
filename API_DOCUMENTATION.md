@@ -497,7 +497,7 @@ Connect to the API URL with the JWT: `io(API_URL, { auth: { token } })`. The ser
 | `campaign_created` / `campaign_update` / `campaign.started` / `campaign.completed` | Campaign progress |
 | `whatsapp_error` | Send failure reported by Meta |
 | `whatsapp_account_alert` | New account alert (quality, limits, name review) |
-| `new_log` | New audit log entry (sent to every connected socket) |
+| `new_log` | New log entry (super admins and the tenant it belongs to) |
 
 **Client → server**
 

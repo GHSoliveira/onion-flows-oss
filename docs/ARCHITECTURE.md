@@ -705,7 +705,6 @@ Each item is visible in the code.
 - The JWT lives in `localStorage` and is sent as a bearer header. There is no refresh token or revocation list; the 8 h expiry and the per-request user lookup are the controls.
 - The TOTP secret is stored on the user document in plain text (`/api/auth/totp/confirm`), not through `encryptString`. Field encryption in general degrades to plain text when `DATA_ENCRYPTION_KEYS` is empty (a boot warning is the only signal).
 - Uploaded media under `/uploads` is served without authentication; the random 16-hex file name is the only barrier.
-- Two socket emits are not tenant-scoped: `createLog` sends `new_log` to every connected socket, and `src/services/contactOutreach.js` calls `io.emit('new_message', ...)`. Log text is PII-masked but still describes other tenants' activity.
 
 **Dead or stale code (still in the tree)**
 
