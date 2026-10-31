@@ -121,8 +121,10 @@ export const createLog = async (type, message, userId = 'system') => {
     });
     console.log(`[LOG] ${type}: ${logMessage}`);
 
+    // Log vai para a Supervisao e, quando tem empresa, so para a sala dela.
     if (io) {
-      io.emit('new_log', newLog);
+      const salas = ['role:SUPER_ADMIN', ...(newLog.tenantId ? [`tenant:${newLog.tenantId}`] : [])];
+      io.to(salas).emit('new_log', newLog);
     }
 
     writesSinceMaintenance += 1;

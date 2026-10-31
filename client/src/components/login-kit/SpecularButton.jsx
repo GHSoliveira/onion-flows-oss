@@ -115,7 +115,8 @@ const SpecularButton = ({
       return;
     }
     const gl = renderer.gl;
-    if (!gl) return;
+    // O shader e WebGL2. Com WebGL1 o OGL monta o contexto, mas quebra na geometria.
+    if (!gl || !renderer.isWebgl2) return;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);

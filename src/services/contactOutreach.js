@@ -183,7 +183,7 @@ export const performWhatsAppContactOutreach = async ({
     if (!deferHumanAttendance || ['open', 'waiting'].includes(updatedChat.status)) {
       io.to(`tenant:${tenantId}`).emit('agent_assigned', { chat: buildChatSummary(updatedChat) });
     }
-    io.emit('new_message', { chatId: updatedChat.id, message: outreachMessageResult.message });
+    io.to(`tenant:${tenantId}`).emit('new_message', { chatId: updatedChat.id, message: outreachMessageResult.message });
   }
 
   await contactsCollection.updateOne(
